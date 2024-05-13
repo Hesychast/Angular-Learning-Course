@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Employe } from './Interfaces/employe';
+import { Department } from './department';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+@Injectable()
 export class AppComponent {
   title = 'Employes Filter';
 
@@ -16,6 +19,15 @@ export class AppComponent {
     {id: 4, name: "Jassy", surname: "Doe", department: "Public Relations", departmentCode: "PR"},
     {id: 5, name: "Stassy", surname: "Doe", department: "Market Research", departmentCode: "MR"}
   ];
+
+  departmentsConfig: Department[] =  [ 
+    { name: "Marketing Research", code: "MR" },
+    { name: "Public Relations", code: "PR" },
+    { name: "Human Relations", code: "HR" },
+    { name: "Cleaning", code: "CL" },
+    { name: "All", code: "ALL" }
+  ];
+
   filteredEmployes: Employe[] = [];
   
   ngOnInit() {

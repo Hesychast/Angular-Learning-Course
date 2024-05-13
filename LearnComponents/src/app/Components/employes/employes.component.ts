@@ -1,31 +1,20 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
+import { Department } from 'src/app/department';
 
 @Component({
   selector: 'app-employes',
   templateUrl: './employes.component.html',
-  styleUrls: ['./employes.component.scss']
+  styleUrls: ['./employes.component.scss'],
+  providers: [AppComponent]
 })
+
+
 export class EmployesComponent {
-  departments = [
-    {
-      name: "Marketing Research",
-      code: "MR"
-    },
-    {
-      name: "Public Relations",
-      code: "PR"
-    },
-    {
-      name: "Human Relations",
-      code: "HR"
-    },
-    {
-      name: "All",
-      code: "ALL"
-    }
-  ];
+  @Input() departments: Department[] = [];
 
   selectedDepartment: string = "";
+
   @Output() btnData = new EventEmitter<string>();
 
   btnClick(data: string) {
