@@ -4,13 +4,13 @@ import { Department } from 'src/app/Interfaces/department';
 
 @Component({
   selector: 'app-employes',
-  templateUrl: './employes.component.html',
-  styleUrls: ['./employes.component.scss'],
+  templateUrl: './employes-filter.component.html',
+  styleUrls: ['./employes-filter.component.scss'],
   providers: [AppComponent]
 })
 
 
-export class EmployesComponent {
+export class EmployesFilterComponent {
   @Input() departments: Department[] = [];
 
   selectedDepartment: string = "";
