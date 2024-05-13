@@ -1,14 +1,11 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
 import { Department } from 'src/app/Interfaces/department';
 
 @Component({
   selector: 'app-employes',
   templateUrl: './employes-filter.component.html',
   styleUrls: ['./employes-filter.component.scss'],
-  providers: [AppComponent]
 })
-
 
 export class EmployesFilterComponent {
   @Input() departments: Department[] = [];

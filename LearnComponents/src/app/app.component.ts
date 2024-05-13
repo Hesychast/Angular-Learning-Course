@@ -8,7 +8,6 @@ import { Department } from './Interfaces/department';
   styleUrls: ['./app.component.scss']
 })
 
-@Injectable()
 export class AppComponent {
   title = 'Employes Filter';
 
