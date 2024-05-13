@@ -1,1 +1,9 @@
-<p>employes works!</p>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with buttons groups">
+    <button *ngFor="let department of departments" 
+        type="button" 
+        class="btn" 
+        [class]="{'btn-outline-secondary': selectedDepartment !== department.code, 'btn-primary': selectedDepartment === department.code}"
+        (click)="btnClick(department.code)">
+        {{department.name}}
+    </button>
+</div>
