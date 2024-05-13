@@ -1,2 +1,2 @@
-# Angular15Course
-Angular 15 Course
+# Angular Course
+Angular Learning Course
