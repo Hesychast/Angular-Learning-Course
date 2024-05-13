@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { Employe } from './Interfaces/employe';
-import { Department } from './department';
+import { Department } from './Interfaces/department';
 
 @Component({
   selector: 'app-root',

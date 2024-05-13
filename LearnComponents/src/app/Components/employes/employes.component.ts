@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { Department } from 'src/app/department';
+import { Department } from 'src/app/Interfaces/department';
 
 @Component({
   selector: 'app-employes',
