@@ -1,0 +1,13 @@
+<h1>{{title}}</h1>
+<div class="row">
+    <div class="col-12">
+        <div *ngFor="let employe of filteredEmployes">
+            <p>{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <app-employes (btnData)="btnData($event)"></app-employes>
+    </div>
+</div>
