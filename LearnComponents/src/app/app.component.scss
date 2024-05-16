@@ -9,3 +9,24 @@ main {
         margin-top: 1.5em;
     }
 }
+
+.even-row {
+    font-weight: bold;
+}
+
+.odd-row {
+    background-color: #d3d3d3;
+}
+
+.list-paragraph {
+    margin: 0;
+}
+
+.table-row {
+    margin: 0 !important;
+}
+
+.rotate-btn {
+    padding: 0 10px;
+    margin: 5px 0;
+}

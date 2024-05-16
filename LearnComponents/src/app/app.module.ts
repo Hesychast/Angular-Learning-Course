@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EmployesFilterComponent } from './Components/employes-filter/employes-filter.component';
+import { ReverseWordsPipe } from './Pipes/reverse-words.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployesFilterComponent
+    EmployesFilterComponent,
+    ReverseWordsPipe
   ],
   imports: [
     BrowserModule

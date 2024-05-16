@@ -1,12 +1,12 @@
 <main>
     <div class="container">
         <div class="row">
-            <h1>{{title}}</h1>
+            <h1>{{title | reverseWords}}</h1>
         </div>
         <div class="row">
             <div class="col-12">
-                <div *ngFor="let employe of filteredEmployes">
-                    <p>{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
+                <div *ngFor="let employe of filteredEmployes; let i = index" [ngClass]="{'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0}">
+                    <p class="list-paragraph">{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
                 </div>
             </div>
         </div>
