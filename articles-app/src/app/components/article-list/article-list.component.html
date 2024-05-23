@@ -1,9 +1,3 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand my-1 ms-5" href="#">Final App</a>
-  </div>
-</nav>
-
 <div class="container mt-4">
   <button class="btn btn-primary mb-3" (click)="createArticle()">Create New Article</button>
 
@@ -12,7 +6,8 @@
       <span (click)="selectArticle(article)" class="article-title">{{ article.title }}</span>
       <div  class="btn-group" role="group">
         <button class="btn btn-sm btn-success" (click)="editArticle(article)">Edit</button>
-        <button class="btn btn-sm btn-danger" (click)="deleteArticle(article.id)">Delete</button>
+        <!-- <button class="btn btn-sm btn-danger" (click)="deleteArticle(article.id)">Delete</button> -->
+        <button class="btn btn-sm btn-danger" (click)="confirmDelete(article)">Delete</button>
       </div>
     </li>
   </ul>
@@ -32,5 +27,12 @@
       [article]="selectedArticle!"
       (cancel)="cancel()">
     </app-article-detail>
+  </div>
+
+  <div class="container app-article">
+    <app-confirm-dialog 
+      *ngIf="isConfirming" 
+      (confirmed)="deleteArticle($event)">
+    </app-confirm-dialog>
   </div>
 </div>

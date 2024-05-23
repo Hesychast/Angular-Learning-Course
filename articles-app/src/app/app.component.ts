@@ -9,5 +9,5 @@ import { ArticleListComponent } from './components/article-list/article-list.com
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'articles-app';
+  title = 'Final App of the Angular Base Course';
 }
