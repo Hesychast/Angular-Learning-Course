@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Article, ArticleService } from '../../services/article.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-article-form',
@@ -20,12 +20,15 @@ export class ArticleFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onSubmit(): void {
+  onSubmit(userForm: NgForm): void {
+    const frmValue = userForm.form.value;
+    
     if (this.article.id) {
-      this.articleService.updateArticle(this.article);
+      const newArticle: Article = {id: this.article.id, title: frmValue.title, content: frmValue.content}
+      this.articleService.updateArticle(newArticle);
     } else {
-      this.article.id = Date.now();
-      this.articleService.addArticle(this.article);
+      const newArticle: Article = {id: Date.now(), title: frmValue.title, content: frmValue.content}
+      this.articleService.addArticle(newArticle);
     }
     this.formSubmitted.emit();
   }
