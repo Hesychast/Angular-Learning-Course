@@ -4,19 +4,12 @@
             <h1>{{title | reverseWords}}</h1>
         </div>
         <div class="row">
-            <!-- <div class="col-12">
-                <div *ngFor="let employe of filteredEmployes; let i = index" [ngClass]="{'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0}">
-                    <p class="list-paragraph">{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
-                </div>
-            </div> -->
 
             <div *ngFor="let employe of filteredEmployes; let i = index"  [ngClass]="{'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0}">
                 <div *ngIf="i % 2 === 0" appBold>
-                  <!-- {{ employe }} -->
                   <p class="list-paragraph">{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
                 </div>
                 <div *ngIf="i % 2 !== 0">
-                  <!-- {{ employe }} -->
                   <p class="list-paragraph">{{employe.id}}. {{employe.name}} {{employe.surname}} - {{employe.department}}</p>
                 </div>
               </div>
