@@ -1,5 +1,6 @@
-<div *ngIf="article">
-  <h2>{{ article.title }}</h2>
+<h2 class="text-uppercase">{{title}}</h2>
+<div *ngIf="article" class="mt-4">
+  <h4>{{ article.title }}</h4>
   <p>{{ article.content }}</p>
   <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
 </div>

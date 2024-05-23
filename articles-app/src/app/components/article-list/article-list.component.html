@@ -12,7 +12,7 @@
     </li>
   </ul>
 
-  <div class="container app-article">
+  <div class="container mt-4">
     <app-article-form
       *ngIf="isCreating || isEditing"
       [article]="selectedArticle!"
@@ -21,7 +21,7 @@
     </app-article-form>
   </div>
   
-  <div class="container app-article">
+  <div class="container mt-4">
     <app-article-detail
       *ngIf="selectedArticle && !isCreating && !isEditing"
       [article]="selectedArticle!"
@@ -29,10 +29,8 @@
     </app-article-detail>
   </div>
 
-  <div class="container app-article">
-    <app-confirm-dialog 
-      *ngIf="isConfirming" 
-      (confirmed)="deleteArticle($event)">
-    </app-confirm-dialog>
-  </div>
+  <app-confirm-dialog 
+    *ngIf="isConfirming" 
+    (confirmed)="deleteArticle($event)">
+  </app-confirm-dialog>
 </div>

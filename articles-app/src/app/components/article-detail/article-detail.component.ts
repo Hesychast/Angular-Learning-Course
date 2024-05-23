@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./article-detail.component.css']
 })
 export class ArticleDetailComponent {
+  title = 'View article';
   @Input() article!: Article;
   @Output() cancel = new EventEmitter<void>();
 

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./article-form.component.css']
 })
 export class ArticleFormComponent implements OnInit {
+  title = "Add or edit article";
   @Input() article!: Article;
   @Output() formSubmitted = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
