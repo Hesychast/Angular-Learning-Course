@@ -15,11 +15,13 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 })
 export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
+  filteredArticles: Article[] = [];
   selectedArticle: Article | null = null;
   isCreating: boolean = false;
   isEditing: boolean = false;
   isConfirming: boolean = false;
   articleToDelete: Article | null = null;
+  searchTerm: string = '';
 
   constructor(private articleService: ArticleService) { }
 
@@ -29,6 +31,21 @@ export class ArticleListComponent implements OnInit {
 
   loadArticles(): void {
     this.articles = this.articleService.getArticles();
+    this.filterArticles();
+  }
+
+  filterArticles(): void {
+    if (this.searchTerm) {
+      this.filteredArticles = this.articles.filter(article =>
+        article.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredArticles = this.articles;
+    }
+  }
+
+  onSearchTermChange(): void {
+    this.filterArticles();
   }
 
   selectArticle(article: Article): void {

@@ -1,34 +1,37 @@
 <div class="container mt-4">
   <button class="btn btn-primary mb-3" (click)="createArticle()">Create New Article</button>
+  
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Search articles by title" [(ngModel)]="searchTerm" (input)="onSearchTermChange()">
+  </div>
 
   <ul class="list-group">
-    <li *ngFor="let article of articles" class="list-group-item d-flex justify-content-between align-items-center">
+    <li *ngFor="let article of filteredArticles" class="list-group-item d-flex justify-content-between align-items-center">
       <span (click)="selectArticle(article)" class="article-title">{{ article.title }}</span>
-      <div  class="btn-group" role="group">
-        <button class="btn btn-sm btn-success" (click)="editArticle(article)">Edit</button>
-        <!-- <button class="btn btn-sm btn-danger" (click)="deleteArticle(article.id)">Delete</button> -->
+      <div class="btn-group">
+        <button class="btn btn-sm btn-success mr-2" (click)="editArticle(article)">Edit</button>
         <button class="btn btn-sm btn-danger" (click)="confirmDelete(article)">Delete</button>
       </div>
     </li>
   </ul>
 
   <div class="container mt-4">
-    <app-article-form
-      *ngIf="isCreating || isEditing"
-      [article]="selectedArticle!"
+    <app-article-form 
+      *ngIf="isCreating || isEditing" 
+      [article]="selectedArticle!" 
       (formSubmitted)="onFormSubmitted()"
       (cancel)="cancel()">
     </app-article-form>
   </div>
   
   <div class="container mt-4">
-    <app-article-detail
-      *ngIf="selectedArticle && !isCreating && !isEditing"
+    <app-article-detail 
+      *ngIf="selectedArticle && !isCreating && !isEditing" 
       [article]="selectedArticle!"
       (cancel)="cancel()">
     </app-article-detail>
   </div>
-
+  
   <app-confirm-dialog 
     *ngIf="isConfirming" 
     (confirmed)="deleteArticle($event)">
