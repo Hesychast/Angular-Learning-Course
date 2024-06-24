@@ -10,7 +10,7 @@ import { ArticleListComponent } from './components/article-list/article-list.com
     ArticleListComponent 
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'Final App of the Angular Base Course';

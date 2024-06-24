@@ -10,7 +10,7 @@ import { ArticleStateService } from '../../services/article-state-service.servic
   standalone: true,
   imports: [CommonModule],
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.css']
+  styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
   title = 'View article';

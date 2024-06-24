@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  styleUrls: ['./not-found.component.css'],
+  styleUrls: ['./not-found.component.scss'],
   templateUrl: './not-found.component.html'
 })
 export class NotFoundComponent implements OnInit {

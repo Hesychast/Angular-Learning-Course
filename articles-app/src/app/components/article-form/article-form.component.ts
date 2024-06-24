@@ -14,7 +14,7 @@ import { FormsModule, NgForm } from '@angular/forms';
     FormsModule
   ],
   templateUrl: './article-form.component.html',
-  styleUrls: ['./article-form.component.css']
+  styleUrls: ['./article-form.component.scss']
 })
 export class ArticleFormComponent implements OnInit {
   article: Article = {id: 0, title: '', content: ''};

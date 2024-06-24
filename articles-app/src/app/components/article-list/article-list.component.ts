@@ -20,7 +20,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
     ConfirmDialogComponent
   ],
   templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  styleUrls: ['./article-list.component.scss']
 })
 export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
