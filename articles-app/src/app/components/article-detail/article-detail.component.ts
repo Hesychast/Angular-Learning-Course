@@ -1,6 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Article } from '../../services/article.service';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Article } from '../../interfaces/article';
+import { ArticleStateService } from '../../services/article-state-service.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -9,12 +12,28 @@ import { CommonModule } from '@angular/common';
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.css']
 })
-export class ArticleDetailComponent {
+export class ArticleDetailComponent implements OnInit {
   title = 'View article';
-  @Input() article!: Article;
-  @Output() cancel = new EventEmitter<void>();
+  article: Article = {id: 0, title: '', content: ''};  
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private articleStateService: ArticleStateService
+  ) {}
+
+  ngOnInit(): void {
+    const articleId = +this.route.snapshot.params['id'];
+    this.articleStateService.getArticle().subscribe(article => {
+      if (article && article.id === articleId) {
+        this.article = article;
+      } else {
+        this.router.navigate(['/404', articleId]);
+      }
+    });
+  }
 
   onCancel(): void {
-    this.cancel.emit();
+    this.router.navigate(['/']);
   }
 }

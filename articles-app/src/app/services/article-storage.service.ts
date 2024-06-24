@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
-
-export interface Article {
-  id: number;
-  title: string;
-  content: string;
-}
+import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class ArticleStorageService {
   private storageKey = 'articles';
 
   constructor() { }

@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Article, ArticleService } from '../../services/article.service';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ArticleFormComponent } from '../article-form/article-form.component';
+import { ArticleStorageService } from '../../services/article-storage.service';
+import { Article } from '../../interfaces/article';
+import { ArticleStateService } from '../../services/article-state-service.service';
 import { ArticleDetailComponent } from '../article-detail/article-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ArticleFormComponent, ArticleDetailComponent, ConfirmDialogComponent],
+  imports: [
+    CommonModule, 
+    RouterModule,
+    FormsModule, 
+    ArticleDetailComponent, 
+    ConfirmDialogComponent
+  ],
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
@@ -17,20 +26,22 @@ export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
   filteredArticles: Article[] = [];
   selectedArticle: Article | null = null;
-  isCreating: boolean = false;
-  isEditing: boolean = false;
   isConfirming: boolean = false;
   articleToDelete: Article | null = null;
   searchTerm: string = '';
 
-  constructor(private articleService: ArticleService) { }
+  constructor(
+    private articleStorageService: ArticleStorageService, 
+    private router: Router, 
+    private articleStateService: ArticleStateService
+  ) { }
 
   ngOnInit(): void {
     this.loadArticles();
   }
 
   loadArticles(): void {
-    this.articles = this.articleService.getArticles();
+    this.articles = this.articleStorageService.getArticles();
     this.filterArticles();
   }
 
@@ -49,21 +60,18 @@ export class ArticleListComponent implements OnInit {
   }
 
   selectArticle(article: Article): void {
-    this.selectedArticle = article;
-    this.isCreating = false;
-    this.isEditing = false;
+    this.articleStateService.setArticle(article);
+    this.router.navigate(['/articles/', article.id]);
   }
 
   createArticle(): void {
-    this.selectedArticle = { id: 0, title: '', content: '' };
-    this.isCreating = true;
-    this.isEditing = false;
+    this.articleStateService.setArticle({ id: 0, title: '', content: '' });
+    this.router.navigate(['/add-article']);
   }
 
   editArticle(article: Article): void {
-    this.selectedArticle = article;
-    this.isCreating = false;
-    this.isEditing = true;
+    this.articleStateService.setArticle(article);
+    this.router.navigate(['/add-article']);
   }
 
   confirmDelete(article: Article): void {
@@ -73,24 +81,11 @@ export class ArticleListComponent implements OnInit {
 
   deleteArticle(confirmed: boolean): void {
     if (confirmed && this.articleToDelete) {
-      this.articleService.deleteArticle(this.articleToDelete.id);
+      this.articleStorageService.deleteArticle(this.articleToDelete.id);
       this.loadArticles();
       this.selectedArticle = null;
     }
     this.isConfirming = false;
     this.articleToDelete = null;
-  }
-
-  cancel(): void {
-    this.selectedArticle = null;
-    this.isCreating = false;
-    this.isEditing = false;
-  }
-
-  onFormSubmitted(): void {
-    this.selectedArticle = null;
-    this.isCreating = false;
-    this.isEditing = false;
-    this.loadArticles();
   }
 }
