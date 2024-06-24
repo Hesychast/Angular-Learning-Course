@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleStorageService } from '../../services/article-storage.service';
 import { ArticleStateService } from '../../services/article-state-service.service';
